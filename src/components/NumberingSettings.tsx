@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NumberingSettings } from '../types';
 import { generateProposalNumber } from '../utils/numbering';
-import { Settings, RefreshCw, Check, Info } from 'lucide-react';
+import { Settings, RefreshCw, Check, Info, Building } from 'lucide-react';
 
 interface Props {
   settings: NumberingSettings;
@@ -122,6 +122,66 @@ export default function NumberingSettingsComponent({ settings, onSaveSettings, c
           </button>
         </div>
       </form>
+
+      {/* Kop Surat Preview Section */}
+      <div className="mt-8 pt-6 border-t border-slate-200" id="kop-surat-preview-section">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="p-2 bg-amber-50 text-amber-600 rounded-lg border border-amber-100">
+            <Building className="w-5 h-5" id="kop-preview-icon" />
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 text-sm tracking-tight uppercase" id="kop-preview-title">Pratinjau Kop Surat Resmi</h4>
+            <p className="text-xs text-slate-400 mt-0.5">Tampilan kepala surat resmi yang akan dicetak di atas setiap dokumen formulir RAB</p>
+          </div>
+        </div>
+
+        {/* Realistic Kop Surat Preview Box */}
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-6 overflow-x-auto shadow-inner">
+          <div className="bg-white min-w-[700px] border border-slate-300 p-8 shadow-xs rounded-lg" id="kop-surat-preview-paper">
+            <div className="flex items-center justify-between border-b-4 border-double border-slate-900 pb-5">
+              {/* Official Logo RW 015 */}
+              <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center">
+                <img 
+                  src="https://drive.google.com/thumbnail?id=17G7evIeHShfqn7aSm7L1mfgjlb1hStya" 
+                  alt="Logo RW 015" 
+                  className="max-w-full max-h-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              {/* Official Letterhead Text */}
+              <div className="flex-1 text-center px-4 font-sans">
+                <h1 className="text-lg font-black text-slate-900 tracking-wide uppercase leading-tight">
+                  PENGURUS RUKUN WARGA 015 PESONA GADING CIBITUNG
+                </h1>
+                <h2 className="text-xs font-bold text-slate-800 uppercase tracking-wider mt-0.5">
+                  DESA WANAJAYA • KECAMATAN CIBITUNG • KABUPATEN BEKASI
+                </h2>
+                <p className="text-[10px] text-slate-600 mt-1 leading-relaxed">
+                  Sekretariat: Perumahan Pesona Gading Cibitung Blok H, Desa Wanajaya, Kec. Cibitung, Kab. Bekasi, Jawa Barat 17520
+                </p>
+                <p className="text-[9px] text-slate-500 font-medium mt-0.5">
+                  Email: <span className="font-semibold text-slate-700">sekretariat.pgc015@gmail.com</span> • WhatsApp: <span className="font-semibold text-slate-700">+62 813-1647-5311</span>
+                </p>
+              </div>
+
+              {/* Spacer to keep center balance */}
+              <div className="w-20 h-20 flex-shrink-0 invisible block"></div>
+            </div>
+
+            {/* Simulated letter content representation */}
+            <div className="mt-6 space-y-3 opacity-35 select-none">
+              <div className="h-4 bg-slate-300 rounded w-1/3"></div>
+              <div className="h-3 bg-slate-200 rounded w-1/4"></div>
+              <div className="space-y-2 pt-4">
+                <div className="h-2.5 bg-slate-200 rounded w-full"></div>
+                <div className="h-2.5 bg-slate-200 rounded w-full"></div>
+                <div className="h-2.5 bg-slate-200 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

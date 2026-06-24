@@ -52,12 +52,14 @@ export default function PrintProposal({ proposal, onClose }: Props) {
         {/* Top Header - Logo and Text (KOP SURAT) */}
         <div>
           <div className="flex items-center justify-between border-b-4 border-double border-slate-900 pb-5" id="kop-surat-header">
-            {/* Shield Logo with custom vector styling */}
-            <div className="w-20 h-20 bg-slate-950 flex-shrink-0 flex flex-col items-center justify-center p-1.5 relative rounded-lg border border-slate-800" style={{ clipPath: 'polygon(50% 0%, 100% 15%, 100% 80%, 50% 100%, 0% 80%, 0% 15%)' }}>
-              <div className="text-[10px] font-black text-white tracking-wider text-center leading-none mt-1">RW. 015</div>
-              <div className="w-12 h-[2px] bg-amber-400 my-1"></div>
-              <div className="text-[7px] text-center text-slate-300 font-extrabold leading-tight uppercase px-0.5">PESONA GADING</div>
-              <div className="text-[5px] text-amber-300 font-black tracking-widest mt-1.5 uppercase">CIBITUNG</div>
+            {/* Official Logo RW 015 */}
+            <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center">
+              <img 
+                src="https://drive.google.com/thumbnail?id=17G7evIeHShfqn7aSm7L1mfgjlb1hStya" 
+                alt="Logo RW 015" 
+                className="max-w-full max-h-full object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
             {/* Official Letterhead Text */}
