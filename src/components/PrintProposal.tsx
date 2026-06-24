@@ -49,36 +49,55 @@ export default function PrintProposal({ proposal, onClose }: Props) {
       {/* Main Print Container */}
       <div className="bg-white w-full max-w-[800px] min-h-[1120px] p-8 sm:p-12 shadow-2xl rounded-none sm:rounded-2xl overflow-hidden print:shadow-none print:p-0 print:rounded-none relative flex flex-col justify-between" id="print-paper-stage">
         
-        {/* Top Header - Logo and Text */}
+        {/* Top Header - Logo and Text (KOP SURAT) */}
         <div>
-          <div className="flex items-center gap-6 border-b-2 border-slate-800 pb-4">
+          <div className="flex items-center justify-between border-b-4 border-double border-slate-900 pb-5" id="kop-surat-header">
             {/* Shield Logo with custom vector styling */}
-            <div className="w-20 h-20 bg-slate-900 flex-shrink-0 flex flex-col items-center justify-center p-1 relative rounded-lg border-2 border-slate-700" style={{ clipPath: 'polygon(50% 0%, 100% 15%, 100% 80%, 50% 100%, 0% 80%, 0% 15%)' }}>
-              <div className="text-[9px] font-bold text-white tracking-widest text-center mt-1 leading-none">RW. 015</div>
-              <div className="w-10 h-0.5 bg-yellow-500 my-1"></div>
-              <div className="text-[6px] text-center text-slate-300 font-semibold leading-tight uppercase px-1">Pesona Gading Cibitung</div>
-              <div className="text-[5px] text-yellow-400 font-bold tracking-widest mt-1.5">- TERMUKTI -</div>
+            <div className="w-20 h-20 bg-slate-950 flex-shrink-0 flex flex-col items-center justify-center p-1.5 relative rounded-lg border border-slate-800" style={{ clipPath: 'polygon(50% 0%, 100% 15%, 100% 80%, 50% 100%, 0% 80%, 0% 15%)' }}>
+              <div className="text-[10px] font-black text-white tracking-wider text-center leading-none mt-1">RW. 015</div>
+              <div className="w-12 h-[2px] bg-amber-400 my-1"></div>
+              <div className="text-[7px] text-center text-slate-300 font-extrabold leading-tight uppercase px-0.5">PESONA GADING</div>
+              <div className="text-[5px] text-amber-300 font-black tracking-widest mt-1.5 uppercase">CIBITUNG</div>
             </div>
 
-            <div className="text-left space-y-1">
-              <h1 className="text-xl font-bold text-slate-900 tracking-wide font-sans leading-tight">RW. 015 PESONA GADING CIBITUNG</h1>
-              <h2 className="text-sm font-semibold text-slate-800 font-sans tracking-normal uppercase">DESA WANAJAYA KECAMATAN CIBITUNG</h2>
-              <div className="h-[2px] bg-slate-900 w-full mt-2"></div>
-              <h3 className="text-base font-bold text-slate-900 tracking-wider font-sans uppercase pt-1 text-center sm:text-left">FORM PENGAJUAN ANGGARAN</h3>
+            {/* Official Letterhead Text */}
+            <div className="flex-1 text-center px-4 font-sans">
+              <h1 className="text-lg font-black text-slate-900 tracking-wide uppercase leading-tight">
+                PENGURUS RUKUN WARGA 015 PESONA GADING CIBITUNG
+              </h1>
+              <h2 className="text-xs font-bold text-slate-800 uppercase tracking-wider mt-0.5">
+                DESA WANAJAYA • KECAMATAN CIBITUNG • KABUPATEN BEKASI
+              </h2>
+              <p className="text-[10px] text-slate-600 mt-1 leading-relaxed">
+                Sekretariat: Perumahan Pesona Gading Cibitung Blok H, Desa Wanajaya, Kec. Cibitung, Kab. Bekasi, Jawa Barat 17520
+              </p>
+              <p className="text-[9px] text-slate-500 font-medium">
+                Email: <span className="font-semibold text-slate-700">sekretariat.pgc015@gmail.com</span> • WhatsApp: <span className="font-semibold text-slate-700">+62 813-1647-5311</span>
+              </p>
             </div>
+
+            {/* Hidden spacer to balance flex box centering on desktop/print */}
+            <div className="w-20 h-20 flex-shrink-0 invisible block"></div>
+          </div>
+
+          {/* Document Title under Kop Surat */}
+          <div className="text-center mt-6 mb-4">
+            <h3 className="text-base font-black text-slate-950 tracking-wider font-sans uppercase underline decoration-2 underline-offset-4">
+              FORMULIR PENGAJUAN RENCANA ANGGARAN BIAYA (RAB)
+            </h3>
           </div>
 
           {/* Doc metadata */}
-          <div className="mt-6 space-y-1 text-sm font-medium">
+          <div className="mt-4 space-y-1.5 text-sm font-medium border-b border-slate-200 pb-4">
             <div className="flex">
-              <span className="w-40">Nomor</span>
-              <span className="mr-3">:</span>
-              <span className="font-semibold font-mono tracking-wide text-slate-900">{proposal.nomor}</span>
+              <span className="w-40 text-slate-600 font-semibold uppercase tracking-wider text-xs">Nomor Dokumen</span>
+              <span className="mr-3 text-slate-800">:</span>
+              <span className="font-bold font-mono tracking-wide text-blue-700 text-sm">{proposal.nomor}</span>
             </div>
             <div className="flex">
-              <span className="w-40">Tanggal Pengajuan</span>
-              <span className="mr-3">:</span>
-              <span>{formatDateIndo(proposal.tanggalPengajuan)}</span>
+              <span className="w-40 text-slate-600 font-semibold uppercase tracking-wider text-xs">Tanggal Pengajuan</span>
+              <span className="mr-3 text-slate-800">:</span>
+              <span className="text-slate-900">{formatDateIndo(proposal.tanggalPengajuan)}</span>
             </div>
           </div>
 
