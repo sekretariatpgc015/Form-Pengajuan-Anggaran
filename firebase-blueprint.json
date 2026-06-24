@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "proposal": {
+      "title": "Budget Proposal",
+      "description": "Form Pengajuan Anggaran RW 015",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the proposal"
+        },
+        "nomor": {
+          "type": "string",
+          "description": "Proposal auto-generated number"
+        },
+        "tanggalPengajuan": {
+          "type": "string",
+          "format": "date",
+          "description": "Submission date"
+        },
+        "namaLengkap": {
+          "type": "string",
+          "description": "Full name of the applicant"
+        },
+        "bidang": {
+          "type": "string",
+          "enum": ["K3", "Sekretariat", "Keamanan"],
+          "description": "Division or department"
+        },
+        "namaKegiatan": {
+          "type": "string",
+          "description": "Activity/event name"
+        },
+        "tanggalPelaksanaan": {
+          "type": "string",
+          "format": "date",
+          "description": "Implementation date"
+        },
+        "tempatPelaksanaan": {
+          "type": "string",
+          "description": "Implementation venue"
+        },
+        "items": {
+          "type": "array",
+          "description": "Budget line items"
+        },
+        "jumlahTotal": {
+          "type": "number",
+          "description": "Total budget requested"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the proposal was created"
+        }
+      },
+      "required": [
+        "nomor",
+        "tanggalPengajuan",
+        "namaLengkap",
+        "bidang",
+        "namaKegiatan",
+        "tanggalPelaksanaan",
+        "tempatPelaksanaan",
+        "items",
+        "jumlahTotal"
+      ]
+    },
+    "setting": {
+      "title": "Settings",
+      "description": "Configuration for numbering format",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Document ID, usually 'numbering'"
+        },
+        "formatPattern": {
+          "type": "string",
+          "description": "Pattern for automatic numbering, e.g. '[SEQ] / RAB / [BIDANG] / [ROMAN_MONTH] / [YEAR]'"
+        },
+        "nextSequence": {
+          "type": "number",
+          "description": "Next sequence number to be used"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of last settings update"
+        }
+      },
+      "required": ["formatPattern", "nextSequence"]
+    }
+  },
+  "firestore": {
+    "proposals": {
+      "schema": "proposal",
+      "description": "Collection of all submitted budget proposals"
+    },
+    "settings": {
+      "schema": "setting",
+      "description": "Configuration settings for budget numbering"
+    }
+  }
+}

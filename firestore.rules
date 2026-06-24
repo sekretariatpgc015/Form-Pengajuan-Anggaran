@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper to validate IDs
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Helper to check if a field is a timestamp or date string
+    function isValidDate(dateStr) {
+      return dateStr is string && dateStr.size() <= 30;
+    }
+
+    // Proposals rules
+    match /proposals/{proposalId} {
+      allow read: if true; // Allow reading proposals for listing/printing
+      
+      allow create: if isValidId(proposalId) 
+        && request.resource.data.keys().hasAll(['nomor', 'tanggalPengajuan', 'namaLengkap', 'bidang', 'namaKegiatan', 'tanggalPelaksanaan', 'tempatPelaksanaan', 'items', 'jumlahTotal', 'createdAt'])
+        && request.resource.data.keys().size() == 10
+        && request.resource.data.nomor is string && request.resource.data.nomor.size() <= 100
+        && isValidDate(request.resource.data.tanggalPengajuan)
+        && request.resource.data.namaLengkap is string && request.resource.data.namaLengkap.size() <= 200
+        && request.resource.data.bidang in ['K3', 'Sekretariat', 'Keamanan']
+        && request.resource.data.namaKegiatan is string && request.resource.data.namaKegiatan.size() <= 500
+        && isValidDate(request.resource.data.tanggalPelaksanaan)
+        && request.resource.data.tempatPelaksanaan is string && request.resource.data.tempatPelaksanaan.size() <= 500
+        && request.resource.data.items is list && request.resource.data.items.size() <= 100
+        && request.resource.data.jumlahTotal is number
+        && request.resource.data.createdAt is string;
+
+      allow update: if false; // Proposals are generally immutable once submitted, but we can allow deletion if needed.
+      allow delete: if true; // Allow deletion from dashboard
+    }
+
+    // Settings rules
+    match /settings/{settingId} {
+      allow read: if true; // Need to read the current settings to auto-increment and get pattern
+      
+      allow write: if isValidId(settingId)
+        && request.resource.data.keys().hasAll(['formatPattern', 'nextSequence', 'updatedAt'])
+        && request.resource.data.keys().size() == 3
+        && request.resource.data.formatPattern is string && request.resource.data.formatPattern.size() <= 200
+        && request.resource.data.nextSequence is number
+        && request.resource.data.updatedAt is string;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Form Pengajuan Anggaran RW 015",
+  "description": "Aplikasi Form Pengajuan Anggaran untuk RW 015 Pesona Gading Cibitung dengan format penomoran otomatis yang dapat disesuaikan dan penyimpanan database.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

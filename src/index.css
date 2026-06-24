@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@media print {
+  /* Hide everything by default */
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+  
+  #root > div {
+    display: none !important;
+  }
+  
+  /* Show only the print preview container */
+  #print-preview-modal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background-color: #fff !important;
+    display: block !important;
+    visibility: visible !important;
+    z-index: 9999 !important;
+  }
+  
+  #print-preview-modal * {
+    visibility: visible !important;
+  }
+  
+  #print-paper-stage {
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    border: none !important;
+  }
+  
+  /* Strictly hide action bar buttons */
+  #print-preview-modal .print\:hidden,
+  #btn-print-trigger,
+  #btn-close-print {
+    display: none !important;
+  }
+}
